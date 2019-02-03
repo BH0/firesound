@@ -1,0 +1,135 @@
+{
+  "project_info": {
+    "project_number": "307629437762",
+    "firebase_url": "https://rn-audio.firebaseio.com",
+    "project_id": "rn-audio",
+    "storage_bucket": "rn-audio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307629437762:android:4565fcc98b0d2cd4",
+        "android_client_info": {
+          "package_name": "com.bh.rnfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307629437762-5rrbkebbkk9443k2vrueubmtk6k2opev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6Rsv-SqLfv2ZLJhUfCz-IWg_VsWXKyJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307629437762:android:eefdce14a4e424d3",
+        "android_client_info": {
+          "package_name": "com.example.firesound"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307629437762-5rrbkebbkk9443k2vrueubmtk6k2opev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6Rsv-SqLfv2ZLJhUfCz-IWg_VsWXKyJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307629437762:android:765f244b50bde666",
+        "android_client_info": {
+          "package_name": "com.rnaudio.lynx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307629437762-5rrbkebbkk9443k2vrueubmtk6k2opev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6Rsv-SqLfv2ZLJhUfCz-IWg_VsWXKyJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307629437762:android:437264d8a6710d34",
+        "android_client_info": {
+          "package_name": "com.rnfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307629437762-5rrbkebbkk9443k2vrueubmtk6k2opev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6Rsv-SqLfv2ZLJhUfCz-IWg_VsWXKyJA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
