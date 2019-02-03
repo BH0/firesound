@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:audioplayer2/audioplayer2.dart';
 import 'package:firebase_storage/firebase_storage.dart'; 
 import 'dart:typed_data';
+import 'dart:convert';
 
 void main() {
   runApp(new MaterialApp(
@@ -24,7 +25,7 @@ class HomePageState extends State<HomePage> {
   var selectedTrack = ""; 
   
   onPressed() async { 
-    await downloadFile(); 
+    await downloadFile('track2'); 
     print("Playing track "); 
   }
 
@@ -35,11 +36,12 @@ Future<void> play() async {
     await audioPlayer.play("http://soundbible.com/mp3/airplane-landing_daniel_simion.mp3");
 } 
 
-Future<Null> downloadFile() async { 
+Future<Null> downloadFile(String trackName) async { 
+    print(trackName); 
     final Directory tempDir = Directory.systemTemp;
-    final File file = File('${tempDir.path}/track1.mp3');
+    final File file = File('${tempDir.path}/${trackName}.mp3');
 
-    final StorageReference ref = FirebaseStorage.instance.ref().child("track1.mp3");
+    final StorageReference ref = FirebaseStorage.instance.ref().child('${trackName}.mp3');
     final StorageFileDownloadTask downloadTask = ref.writeToFile(file);
 
     final int byteNumber = (await downloadTask.future).totalByteCount;
@@ -47,7 +49,17 @@ Future<Null> downloadFile() async {
     print(byteNumber); 
     AudioPlayer audioPlayer = new AudioPlayer(); 
     print('File: ${file.toString()}'); 
-    await audioPlayer.play("/data/user/0/com.example.firesound/cache/track1.mp3"); 
+    // await audioPlayer.play("/data/user/0/com.example.firesound/cache/track1.mp3");
+    /*  
+    file.readAsString().then((String contents) {
+        print('Contents: ${contents}'); 
+        audioPlayer.play(contents);
+    });
+    */ 
+    // final String p = file.toString(); 
+    // print('p : ${p}'); 
+    // audioPlayer.play(p); 
+    audioPlayer.play('/data/user/0/com.example.firesound/cache/${trackName}.mp3'); 
 }
 
   @override
