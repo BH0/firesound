@@ -21,11 +21,12 @@ class HomePageState extends State<HomePage> {
   String _path;
   File _cachedFile;
 
-  List tracks = ["one", "track1", "track2", "track3", "track4"];
+  List tracks = ["one", "track1", "track2", "track3", "track4"]; // note: each track button should now be rendered based on tracks within within Firebase Storagw or Firebase database/Firestore 
   var selectedTrack = ""; 
   
-  onPressed() async { 
-    await downloadFile('track2'); 
+  onPressed(trackName) async { 
+    print(trackName); 
+    await downloadFile(trackName); // should replace track2 with trackName which should be the contents(text) of the button 
     print("Playing track "); 
   }
 
@@ -37,28 +38,12 @@ Future<void> play() async {
 } 
 
 Future<Null> downloadFile(String trackName) async { 
-    print(trackName); 
     final Directory tempDir = Directory.systemTemp;
     final File file = File('${tempDir.path}/${trackName}.mp3');
-
     final StorageReference ref = FirebaseStorage.instance.ref().child('${trackName}.mp3');
     final StorageFileDownloadTask downloadTask = ref.writeToFile(file);
-
     final int byteNumber = (await downloadTask.future).totalByteCount;
-
-    print(byteNumber); 
     AudioPlayer audioPlayer = new AudioPlayer(); 
-    print('File: ${file.toString()}'); 
-    // await audioPlayer.play("/data/user/0/com.example.firesound/cache/track1.mp3");
-    /*  
-    file.readAsString().then((String contents) {
-        print('Contents: ${contents}'); 
-        audioPlayer.play(contents);
-    });
-    */ 
-    // final String p = file.toString(); 
-    // print('p : ${p}'); 
-    // audioPlayer.play(p); 
     audioPlayer.play('/data/user/0/com.example.firesound/cache/${trackName}.mp3'); 
 }
 
@@ -74,7 +59,7 @@ Future<Null> downloadFile(String trackName) async {
           return Card(
             child: RaisedButton(child: Text(tracks[index]), 
             color: Colors.purple, 
-            onPressed: onPressed), 
+            onPressed: () => onPressed(tracks[index])), 
           );
         },
       ),
