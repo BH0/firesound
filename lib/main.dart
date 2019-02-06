@@ -55,13 +55,26 @@ Future<Null> downloadFile(String trackName) async {
     final int byteNumber = (await downloadTask.future).totalByteCount;
     AudioPlayer audioPlayer = new AudioPlayer(); 
     audioPlayer.play('/data/user/0/com.example.firesound/cache/${trackName}.mp3'); 
-}
+} 
+
+
+
+Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
+    return ListTile(
+      title:
+            Card(
+                    child: RaisedButton(child: Text(document['trackName']), 
+                    color: Colors.purple, 
+                    onPressed: () => onPressed(document['trackName'])), 
+                  )
+    );
+  }
 
   @override
   Widget build(context) {
     return  Scaffold(
       appBar: AppBar(
-        title:  Text("Firesound refusing to render lsit"),
+        title:  Text("Firesound"),
       ),
       body: 
                     StreamBuilder(
@@ -70,13 +83,7 @@ Future<Null> downloadFile(String trackName) async {
             if (!snapshot.hasData) return Text("Loading...");
             return ListView.builder(
                 itemCount: snapshot.data.documents.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: RaisedButton(child: Text(snapshot.data.documents[index].document["trackName"]), 
-                    color: Colors.purple, 
-                    onPressed: () => onPressed(snapshot.data.documents[index].document["trackName"])), 
-                  );
-                },
+                itemBuilder: (context, index) => _buildListItem(context, snapshot.data.documents[index])
               );
         }
         )
