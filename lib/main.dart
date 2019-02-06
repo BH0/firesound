@@ -5,6 +5,9 @@ import 'package:audioplayer2/audioplayer2.dart';
 import 'package:firebase_storage/firebase_storage.dart'; 
 import 'dart:typed_data';
 import 'dart:convert';
+import "package:firebase_core/firebase_core.dart"; 
+import "package:firebase_database/firebase_database.dart"; 
+import "package:cloud_firestore/cloud_firestore.dart"; 
 
 void main() {
   runApp(new MaterialApp(
@@ -18,11 +21,18 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  // List tracks = List(); 
+
   String _path;
   File _cachedFile;
 
-  List tracks = ["one", "track1", "track2", "track3", "track4"]; // note: each track button should now be rendered based on tracks within within Firebase Storagw or Firebase database/Firestore 
+  // List tracks = ["one", "track1", "track2", "track3", "track4"]; // note: each track button should now be rendered based on tracks within within Firebase database/Firestore 
   var selectedTrack = ""; 
+
+  @override
+  initState() { 
+    super.initState(); 
+  }
   
   onPressed(trackName) async { 
     print(trackName); 
@@ -51,18 +61,27 @@ Future<Null> downloadFile(String trackName) async {
   Widget build(context) {
     return  Scaffold(
       appBar: AppBar(
-        title:  Text("Firesound"),
+        title:  Text("Firesound refusing to render lsit"),
       ),
-      body:  ListView.builder(
-        itemCount: tracks == null ? 0 : tracks.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: RaisedButton(child: Text(tracks[index]), 
-            color: Colors.purple, 
-            onPressed: () => onPressed(tracks[index])), 
-          );
-        },
-      ),
+      body: 
+                    StreamBuilder(
+          stream: Firestore.instance.collection("tracks").snapshots(),
+          builder: (context, snapshot) { 
+            if (!snapshot.hasData) return Text("Loading...");
+            return ListView.builder(
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: RaisedButton(child: Text(snapshot.data.documents[index].document["trackName"]), 
+                    color: Colors.purple, 
+                    onPressed: () => onPressed(snapshot.data.documents[index].document["trackName"])), 
+                  );
+                },
+              );
+        }
+        )
+
     );
   }
 }
+
